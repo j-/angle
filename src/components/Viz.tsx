@@ -1,8 +1,6 @@
 import * as React from 'react';
 
 export interface VizProps {
-	width: number;
-	height: number;
 	animate: boolean;
 	rotate: string;
 	onChangeAngle: (rads: number) => void;
@@ -12,16 +10,12 @@ export default class Viz extends React.PureComponent<VizProps> {
 	private element: SVGElement;
 
 	render () {
-		const { width, height, animate, rotate } = this.props;
+		const { animate, rotate } = this.props;
 
 		return (
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 100 100"
-				style={{
-					width: width,
-					height: height,
-				}}
 				ref={this.assignRef}
 			>
 				<circle

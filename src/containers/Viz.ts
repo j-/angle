@@ -17,11 +17,6 @@ interface DispatchProps {
 	onChangeAngle: (rads: number) => void;
 }
 
-interface OwnProps {
-	width: number;
-	height: number;
-}
-
 const mapStateToProps = (state: ReducerState) => ({
 	animate: shouldAnimate(state),
 	rotate: currentRotationValue(state),
@@ -31,7 +26,7 @@ const mapDispatchToProps = {
 	onChangeAngle: setAngleRads,
 };
 
-export default connect<StateProps, DispatchProps, OwnProps>(
+export default connect<StateProps, DispatchProps>(
 	mapStateToProps,
 	mapDispatchToProps,
 )(Viz);
