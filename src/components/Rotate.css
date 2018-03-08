@@ -1,3 +1,4 @@
 .Rotate input {
-	font-family: inherit;
+	font: inherit;
+	width: 5em;
 }
