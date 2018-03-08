@@ -1,15 +1,20 @@
 import { connect } from 'react-redux';
 import Viz from '../components/Viz';
+import { setAngleRads } from 'src/store/actions';
 
 import {
 	ReducerState,
 	shouldAnimate,
-	currentRotation,
+	currentRotationValue,
 } from 'src/store';
 
 interface StateProps {
 	animate: boolean;
 	rotate: string;
+}
+
+interface DispatchProps {
+	onChangeAngle: (rads: number) => void;
 }
 
 interface OwnProps {
@@ -19,9 +24,14 @@ interface OwnProps {
 
 const mapStateToProps = (state: ReducerState) => ({
 	animate: shouldAnimate(state),
-	rotate: currentRotation(state),
+	rotate: currentRotationValue(state),
 });
 
-export default connect<StateProps, void, OwnProps>(
+const mapDispatchToProps = {
+	onChangeAngle: setAngleRads,
+};
+
+export default connect<StateProps, DispatchProps, OwnProps>(
 	mapStateToProps,
+	mapDispatchToProps,
 )(Viz);

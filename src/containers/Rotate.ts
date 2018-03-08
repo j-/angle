@@ -4,7 +4,7 @@ import { setRotationValue } from 'src/store/actions';
 
 import {
 	ReducerState,
-	currentRotation,
+	currentRotationFormatted,
 } from 'src/store';
 
 interface StateProps {
@@ -16,7 +16,7 @@ interface DispatchProps {
 }
 
 const mapStateToProps = (state: ReducerState): StateProps => ({
-	value: currentRotation(state),
+	value: currentRotationFormatted(state),
 });
 
 const mapDispatchToProps = {
