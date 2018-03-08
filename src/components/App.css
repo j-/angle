@@ -1,0 +1,14 @@
+.App {
+	width: 20em;
+	margin: 5em auto;
+}
+
+.App-viz {
+	width: 200px;
+	margin: 1em auto;
+}
+
+.App-config {
+	text-align: center;
+	margin: 1em 0;
+}
