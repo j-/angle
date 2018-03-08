@@ -23,9 +23,15 @@ export default class Viz extends React.PureComponent<VizProps> {
 					height: height,
 				}}
 				ref={this.assignRef}
-				onMouseDown={this.handleMouseDown}
 			>
-				<circle cx="50" cy="50" r="49" fill="none" stroke="#888" />
+				<circle
+					cx="50"
+					cy="50"
+					r="49"
+					fill="transparent"
+					stroke="#888"
+					onMouseDown={this.handleMouseDown}
+				/>
 				<g transform="translate(45, 0)">
 					<g
 						fill="none"
