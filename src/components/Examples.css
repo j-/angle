@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(4, auto);
 	text-align: center;
+	font-size: 1.5em;
 }
 
 .Examples-heading {
