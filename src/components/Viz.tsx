@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Viz.css';
 
 export interface VizProps {
 	animate: boolean;
@@ -14,11 +15,13 @@ export default class Viz extends React.PureComponent<VizProps> {
 
 		return (
 			<svg
+				className="Viz"
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 100 100"
 				ref={this.assignRef}
 			>
 				<circle
+					className="Viz-circle"
 					cx="50"
 					cy="50"
 					r="49"
@@ -60,8 +63,10 @@ export default class Viz extends React.PureComponent<VizProps> {
 			this.props.onChangeAngle(rads);
 		};
 		handler(e);
+		document.documentElement.classList.add('rotating');
 		window.addEventListener('mousemove', handler);
 		window.addEventListener('mouseup', () => {
+			document.documentElement.classList.remove('rotating');
 			window.removeEventListener('mousemove', handler);
 		});
 	}

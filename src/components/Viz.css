@@ -1,0 +1,4 @@
+.Viz-circle {
+	clip-path: circle(50% at center);
+	cursor: crosshair;
+}
