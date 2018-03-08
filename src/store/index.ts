@@ -12,7 +12,7 @@ export interface ReducerState {
 
 const DEFAULT_STATE: ReducerState = {
 	angleRads: null,
-	rotationValue: '0',
+	rotationValue: '',
 };
 
 const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {

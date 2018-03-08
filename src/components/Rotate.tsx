@@ -15,6 +15,7 @@ const Rotate: React.StatelessComponent<RotateProps> = ({ value, onChange }) => (
 					type="text"
 					value={value}
 					onChange={(e) => onChange(e.currentTarget.value)}
+					autoFocus={true}
 				/>
 				)
 			</code>
