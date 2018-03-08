@@ -1,0 +1,16 @@
+.Button {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	font: inherit;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	color: hsl(200, 20%, 30%);
+	padding: 0.25em 0.5em;
+	border-radius: 0.25em;
+}
+
+.Button:hover {
+	background-color: hsl(200, 90%, 90%);
+}

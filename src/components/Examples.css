@@ -1,0 +1,14 @@
+.Examples {
+	display: grid;
+	grid-template-columns: repeat(4, auto);
+	text-align: center;
+}
+
+.Examples-heading {
+	grid-column-start: span 4;
+}
+
+.Examples-section .Button {
+	display: block;
+	width: 100%;
+}

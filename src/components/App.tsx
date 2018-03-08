@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Viz from '../containers/Viz';
 import Rotate from '../containers/Rotate';
+import Examples from './Examples';
 import './App.css';
 
 const App: React.StatelessComponent = () => (
@@ -10,6 +11,9 @@ const App: React.StatelessComponent = () => (
 		</div>
 		<div className="App-config">
 			<Rotate />
+		</div>
+		<div className="App-examples">
+			<Examples />
 		</div>
 	</div>
 );
