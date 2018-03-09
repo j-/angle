@@ -9,6 +9,7 @@
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "@types/react-redux": "^5.0.15",
+    "gh-pages": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -20,7 +21,9 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "description": "CSS angle tool",
   "main": "index.js",
@@ -39,5 +42,5 @@
   "bugs": {
     "url": "https://github.com/j-/angle/issues"
   },
-  "homepage": "https://github.com/j-/angle#readme"
+  "homepage": "https://skeoh.com/angle"
 }
