@@ -73,7 +73,7 @@ export const getAngleRad = (state: ReducerState): null | number => (
 
 export const getAngleRadFormatted = (state: ReducerState): null | string => (
 	state.angleRads === null ? null :
-		roundToNearest(state.angleRads, 0.001) + 'rad'
+		roundToNearest(state.angleRads, 0.001).toFixed(3) + 'rad'
 );
 
 export const getAngleGrad = (state: ReducerState): null | number => (
@@ -103,7 +103,7 @@ export const getAngleTurn = (state: ReducerState): null | number => (
 
 export const getAngleTurnFormatted = (state: ReducerState): null | string => (
 	state.angleRads === null ? null :
-		roundToNearest(radToTurn(state.angleRads), 0.001) + 'turn'
+		roundToNearest(radToTurn(state.angleRads), 0.001).toFixed(3) + 'turn'
 );
 
 export const getAnglePreferredUnitFormatted = (state: ReducerState): null | string => (
