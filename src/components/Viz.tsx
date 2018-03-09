@@ -61,7 +61,7 @@ export default class Viz extends React.PureComponent<VizProps> {
 		const bounds = this.element.getBoundingClientRect();
 		const centerX = bounds.left + (bounds.right - bounds.left) / 2;
 		const centerY = bounds.top + (bounds.bottom - bounds.top) / 2;
-		const handler = (e: MouseEvent | React.MouseEvent<SVGElement>) => {
+		const handler = (e: { clientX: number, clientY: number }) => {
 			const offsetX = e.clientX - centerX;
 			const offsetY = e.clientY - centerY;
 			const rads = Math.atan2(offsetX, offsetY) * -1 + Math.PI;
