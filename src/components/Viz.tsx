@@ -53,6 +53,10 @@ export default class Viz extends React.PureComponent<VizProps> {
 	)
 
 	private handleMouseDown = (e: React.MouseEvent<SVGElement>) => {
+		if (e.button !== 0) {
+			// Ignore anything but LMB
+			return;
+		}
 		e.preventDefault();
 		const bounds = this.element.getBoundingClientRect();
 		const centerX = bounds.left + (bounds.right - bounds.left) / 2;
