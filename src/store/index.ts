@@ -37,18 +37,55 @@ const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
 
 export default reducer;
 
-export const hasAngleRads = (state: ReducerState): boolean => (
+const roundToNearest = (value: number, nearest: number): number => (
+	Math.round(value / nearest) * nearest
+);
+
+const radToGrad = (rad: number): number => rad * 200 / Math.PI;
+const radToDeg = (rad: number): number => rad * 180 / Math.PI;
+const radToTurn = (rad: number): number => rad * 0.5 / Math.PI;
+
+export const hasAngleValue = (state: ReducerState): boolean => (
 	state.angleRads !== null
 );
 
-export const getAngleRads = (state: ReducerState): null | number => (
+export const getAngleRad = (state: ReducerState): null | number => (
 	state.angleRads
 );
 
-export const getAngleFormatted = (state: ReducerState): null | string => (
-	!hasAngleRads(state) ? null :
-		// Round to 4 decimal places
-		Math.round(state.angleRads as number * 1e4) / 1e4 + 'rad'
+export const getAngleRadFormatted = (state: ReducerState): null | string => (
+	state.angleRads === null ? null :
+		roundToNearest(state.angleRads, 0.001) + 'rad'
+);
+
+export const getAngleGrad = (state: ReducerState): null | number => (
+	state.angleRads === null ? null :
+		state.angleRads * (200 / Math.PI)
+);
+
+export const getAngleGradFormatted = (state: ReducerState): null | string => (
+	state.angleRads === null ? null :
+		roundToNearest(radToGrad(state.angleRads), 1) + 'grad'
+);
+
+export const getAngleDeg = (state: ReducerState): null | number => (
+	state.angleRads === null ? null :
+		state.angleRads * (180 / Math.PI)
+);
+
+export const getAngleDegFormatted = (state: ReducerState): null | string => (
+	state.angleRads === null ? null :
+		roundToNearest(radToDeg(state.angleRads), 1) + 'deg'
+);
+
+export const getAngleTurn = (state: ReducerState): null | number => (
+	state.angleRads === null ? null :
+		state.angleRads * (0.5 / Math.PI)
+);
+
+export const getAngleTurnFormatted = (state: ReducerState): null | string => (
+	state.angleRads === null ? null :
+		roundToNearest(radToTurn(state.angleRads), 0.001) + 'turn'
 );
 
 export const hasRotationValue = (state: ReducerState): boolean => (
@@ -64,13 +101,13 @@ export const shouldAnimate = (state: ReducerState): boolean => (
 );
 
 export const currentRotationValue = (state: ReducerState): string => (
-	hasAngleRads(state) ?
-		getAngleRads(state) + 'rad' :
+	hasAngleValue(state) ?
+		getAngleRad(state) + 'rad' :
 		getRotationValue(state) as string
 );
 
 export const currentRotationFormatted = (state: ReducerState): string => (
-	hasAngleRads(state) ?
-		getAngleFormatted(state) as string :
+	hasAngleValue(state) ?
+		getAngleDegFormatted(state) as string :
 		getRotationValue(state) as string
 );
