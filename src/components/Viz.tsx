@@ -28,6 +28,7 @@ export default class Viz extends React.PureComponent<VizProps> {
 					fill="transparent"
 					stroke="#888"
 					onMouseDown={this.handleMouseDown}
+					onTouchStart={this.handleTouchStart}
 				/>
 				<g
 					className="Viz-arrow"
@@ -74,6 +75,25 @@ export default class Viz extends React.PureComponent<VizProps> {
 		window.addEventListener('mouseup', () => {
 			document.documentElement.classList.remove('rotating');
 			window.removeEventListener('mousemove', handler);
+		});
+	}
+
+	private handleTouchStart = (e: React.TouchEvent<SVGElement>) => {
+		const bounds = this.element.getBoundingClientRect();
+		const centerX = bounds.left + (bounds.right - bounds.left) / 2;
+		const centerY = bounds.top + (bounds.bottom - bounds.top) / 2;
+		const handler = (e: { touches: TouchList }) => {
+			const offsetX = e.touches[0].clientX - centerX;
+			const offsetY = e.touches[0].clientY - centerY;
+			const rads = Math.atan2(offsetX, offsetY) * -1 + Math.PI;
+			this.props.onChangeAngle(rads);
+		};
+		handler(e);
+		document.documentElement.classList.add('rotating');
+		window.addEventListener('touchmove', handler);
+		window.addEventListener('touchend', () => {
+			document.documentElement.classList.remove('rotating');
+			window.removeEventListener('touchmove', handler);
 		});
 	}
 }
