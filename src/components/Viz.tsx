@@ -29,17 +29,18 @@ export default class Viz extends React.PureComponent<VizProps> {
 					stroke="#888"
 					onMouseDown={this.handleMouseDown}
 				/>
-				<g transform="translate(45, 0)">
-					<g
-						className="Viz-arrow"
-						fill="none"
-						stroke="#000"
-						transform-origin="bottom center"
-						style={{
-							transform: `rotate(${rotate})`,
-							transition: animate ? 'transform 0.5s ease-out' : '',
-						}}
-					>
+				<g
+					className="Viz-arrow"
+					fill="none"
+					stroke="none"
+					transform-origin="center"
+					style={{
+						transform: `rotate(${rotate})`,
+						transition: animate ? 'transform 0.5s ease-out' : '',
+					}}
+				>
+					<rect x1="0" y1="0" x2="100" y2="100" />
+					<g className="Viz-arrow" fill="none" stroke="#000" transform="translate(45, 0)">
 						<polyline points="0 10 5 0 10 10" />
 						<line x1="5" y1="0" x2="5" y2="50" />
 					</g>
