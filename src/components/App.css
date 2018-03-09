@@ -13,3 +13,35 @@
 	margin: 1em 0;
 	font-size: 3em;
 }
+
+@media (min-width: 1200px) {
+	.App {
+		width: 40em;
+		margin: 5em auto;
+	}
+
+	.App-viz {
+		width: 20em;
+		margin: 1em auto;
+	}
+
+	.App-config {
+		margin: 1em 0;
+		font-size: 3em;
+	}
+}
+
+@media (max-width: 1199px) {
+	.App {
+		margin: 2em auto;
+	}
+
+	.App-viz {
+		width: 15em;
+		margin: 1em auto;
+	}
+
+	.App-config {
+		margin: 1em 0;
+	}
+}
