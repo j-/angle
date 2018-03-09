@@ -5,14 +5,28 @@ import {
 	isActionSetRotationValue,
 } from './actions';
 
+type Unit = 'deg' | 'grad' | 'rad' | 'turn';
+
 export interface ReducerState {
 	angleRads: null | number;
 	rotationValue: null | string;
+	preferredUnits: Unit;
 }
 
 const DEFAULT_STATE: ReducerState = {
 	angleRads: null,
 	rotationValue: '',
+	preferredUnits: 'deg',
+};
+
+const unitExp = /(deg|grad|rad|turn)\s*$/i;
+const getUnits = (input: string): Unit | null => {
+	const match = input.match(unitExp);
+	if (match) {
+		return match[1].toLowerCase() as Unit;
+	} else {
+		return null;
+	}
 };
 
 const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
@@ -25,10 +39,14 @@ const reducer: Reducer<ReducerState> = (state = DEFAULT_STATE, action) => {
 	}
 
 	if (isActionSetRotationValue(action)) {
+		const rotationValue = action.data.value;
+		const preferredUnits = getUnits(action.data.value) || state.preferredUnits;
+
 		return {
 			...state,
 			angleRads: null,
-			rotationValue: action.data.value,
+			rotationValue,
+			preferredUnits,
 		};
 	}
 
@@ -88,6 +106,15 @@ export const getAngleTurnFormatted = (state: ReducerState): null | string => (
 		roundToNearest(radToTurn(state.angleRads), 0.001) + 'turn'
 );
 
+export const getAnglePreferredUnitFormatted = (state: ReducerState): null | string => (
+	state.angleRads === null ? null :
+		state.preferredUnits === 'deg' ? getAngleDegFormatted(state) :
+		state.preferredUnits === 'rad' ? getAngleRadFormatted(state) :
+		state.preferredUnits === 'grad' ? getAngleGradFormatted(state) :
+		state.preferredUnits === 'turn' ? getAngleTurnFormatted(state) :
+		getAngleDegFormatted(state)
+);
+
 export const hasRotationValue = (state: ReducerState): boolean => (
 	state.rotationValue !== null
 );
@@ -108,6 +135,6 @@ export const currentRotationValue = (state: ReducerState): string => (
 
 export const currentRotationFormatted = (state: ReducerState): string => (
 	hasAngleValue(state) ?
-		getAngleDegFormatted(state) as string :
+		getAnglePreferredUnitFormatted(state) as string :
 		getRotationValue(state) as string
 );
