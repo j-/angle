@@ -2,3 +2,7 @@
 	clip-path: circle(50% at center);
 	cursor: crosshair;
 }
+
+.Viz-arrow {
+	pointer-events: none;
+}

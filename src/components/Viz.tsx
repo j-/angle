@@ -31,6 +31,7 @@ export default class Viz extends React.PureComponent<VizProps> {
 				/>
 				<g transform="translate(45, 0)">
 					<g
+						className="Viz-arrow"
 						fill="none"
 						stroke="#000"
 						transform-origin="bottom center"
